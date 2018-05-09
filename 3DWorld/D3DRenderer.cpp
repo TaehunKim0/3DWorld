@@ -6,7 +6,6 @@ D3DRenderer::D3DRenderer()
 {
 }
 
-
 D3DRenderer::~D3DRenderer()
 {
 }

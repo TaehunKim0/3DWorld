@@ -30,6 +30,5 @@ public:
 
 };
 
-
 template<class T>
 T* Singleton<T>::m_Instance = nullptr;

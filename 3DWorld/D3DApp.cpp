@@ -16,7 +16,8 @@ bool D3DApp::Initialize(UINT width, UINT height, bool windowed)
 	if (_CreateWindow() == false)
 		return false;
 
-	if(D3DRenderer::GetInstance()->Initialize(width, ))
+	if (D3DRenderer::GetInstance()->Initialize(width, height, m_hWnd, windowed) == false)
+		return false;
 
 	return true;
 }

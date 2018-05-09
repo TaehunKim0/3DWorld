@@ -9,7 +9,6 @@ INT WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, INT)
 	freopen_s(&stream, "CONOUT$", "wt", stdout);
 #endif
 	//App -> Init
-
 	//App -> Release
 #if _DEBUG
 	FreeConsole();

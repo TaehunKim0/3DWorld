@@ -9,9 +9,6 @@
 #include<vector>
 #include<list>
 
-
-
-
 #include"Singleton.h"
 #include"D3DApp.h"
 #include"D3DRenderer.h"
