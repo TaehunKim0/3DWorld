@@ -22,6 +22,8 @@ public:
 
 	void Release();
 
+	void RunGame();
+
 public:
 	static LRESULT WINAPI WndProc(HWND hwnd, UINT msg, WPARAM w, LPARAM l);
 

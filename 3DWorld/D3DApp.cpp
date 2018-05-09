@@ -23,7 +23,25 @@ bool D3DApp::Initialize(UINT width, UINT height, bool windowed)
 }
 
 bool D3DApp::_CreateWindow()
-{
+{	
+	WNDCLASS wc = {};
+	wc.lpszClassName = L"WalkingDead";
+	wc.lpfnWndProc = WndProc;
+	wc.hCursor = LoadCursor(NULL, IDC_ARROW);
+
+	if (!RegisterClass(&wc))
+		return false;
+
+	HWND handle = CreateWindow(L"WalkingDead", L"WalkingDead", WS_OVERLAPPEDWINDOW, 0, 0, m_WindowWidth,m_WindowHeight, NULL, NULL, NULL, NULL);
+
+	if (!handle)
+		return false;
+
+	m_hWnd = handle;
+
+	ShowWindow(m_hWnd, SW_SHOWDEFAULT);
+	UpdateWindow(m_hWnd);
+
 	return false;
 }
 
@@ -31,7 +49,35 @@ void D3DApp::Release()
 {
 }
 
+void D3DApp::RunGame()
+{
+	MSG msg;
+	msg = {};
+
+	while (msg.message != WM_QUIT)
+	{
+		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+		{
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+		}
+
+		else
+		{
+		
+		}
+
+	}
+}
+
 LRESULT D3DApp::WndProc(HWND hwnd, UINT msg, WPARAM w, LPARAM l)
 {
-	return LRESULT();
+	switch (msg)
+	{
+	case WM_DESTROY:
+		PostQuitMessage(0);
+		break;
+	}
+
+	return DefWindowProc(hwnd, msg, w, l);
 }
