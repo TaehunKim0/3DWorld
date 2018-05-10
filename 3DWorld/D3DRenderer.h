@@ -10,6 +10,7 @@ public:
 	D3DRenderer();
 	~D3DRenderer();
 
+	void Release();
 
 	bool Initialize(int width, int height, HWND hWnd, bool windowed);
 

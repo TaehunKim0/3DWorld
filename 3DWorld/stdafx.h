@@ -1,6 +1,8 @@
 #pragma once
 
 #define SafeDelete(x) if(x) {delete x; x = nullptr;}
+#define SafeRelease(x) if(x) {x->Release(); x = nullptr;}
+
 
 #include<Windows.h>
 #include<d3d9.h>

@@ -13,6 +13,9 @@ D3DApp::~D3DApp()
 
 bool D3DApp::Initialize(UINT width, UINT height, bool windowed)
 {
+	m_WindowWidth = width;
+	m_WindowHeight = height;
+
 	if (_CreateWindow() == false)
 		return false;
 
@@ -41,12 +44,14 @@ bool D3DApp::_CreateWindow()
 
 	ShowWindow(m_hWnd, SW_SHOWDEFAULT);
 	UpdateWindow(m_hWnd);
+	
 
-	return false;
+	return true;
 }
 
 void D3DApp::Release()
 {
+	D3DRenderer::GetInstance()->Release();
 }
 
 void D3DApp::RunGame()
@@ -64,7 +69,10 @@ void D3DApp::RunGame()
 
 		else
 		{
-		
+			D3DRenderer::GetInstance()->RenderBegin();
+
+
+			D3DRenderer::GetInstance()->RenderEnd();
 		}
 
 	}
