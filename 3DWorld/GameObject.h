@@ -20,10 +20,13 @@ private:
 	std::string m_Name;
 
 	bool m_Active;
+	bool m_UseParentMatrix;
 
 public:
 	GameObject();
 	virtual ~GameObject();
+
+	void SetMatrix();
 
 	virtual void Update();
 	virtual void Render();
