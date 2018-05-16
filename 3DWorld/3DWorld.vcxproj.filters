@@ -18,6 +18,18 @@
     <ClCompile Include="Scene.cpp">
       <Filter>Node</Filter>
     </ClCompile>
+    <ClCompile Include="SampleScene.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Player1.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshManager.cpp">
+      <Filter>Node</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Node</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -37,6 +49,18 @@
       <Filter>Node</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
+      <Filter>Node</Filter>
+    </ClInclude>
+    <ClInclude Include="SampleScene.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Player1.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshManager.h">
+      <Filter>Node</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
       <Filter>Node</Filter>
     </ClInclude>
   </ItemGroup>

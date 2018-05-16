@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "D3DApp.h"
 
+#include"SampleScene.h"
 
 D3DApp::D3DApp()
 {
@@ -58,6 +59,8 @@ void D3DApp::RunGame()
 {
 	MSG msg;
 	msg = {};
+
+
 
 	while (msg.message != WM_QUIT)
 	{
