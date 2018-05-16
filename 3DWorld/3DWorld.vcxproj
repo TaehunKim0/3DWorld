@@ -21,6 +21,9 @@
   <ItemGroup>
     <ClCompile Include="D3DApp.cpp" />
     <ClCompile Include="D3DRenderer.cpp" />
+    <ClCompile Include="Director.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="StartPage.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -30,6 +33,9 @@
   <ItemGroup>
     <ClInclude Include="D3DApp.h" />
     <ClInclude Include="D3DRenderer.h" />
+    <ClInclude Include="Director.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>

@@ -9,6 +9,15 @@
     <ClCompile Include="D3DRenderer.cpp">
       <Filter>Bases</Filter>
     </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Node</Filter>
+    </ClCompile>
+    <ClCompile Include="Director.cpp">
+      <Filter>Node</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Node</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -21,10 +30,25 @@
     <ClInclude Include="D3DRenderer.h">
       <Filter>Bases</Filter>
     </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Node</Filter>
+    </ClInclude>
+    <ClInclude Include="Director.h">
+      <Filter>Node</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Node</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Bases">
       <UniqueIdentifier>{b2cc144b-2edb-4b87-b402-47c73e57c904}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Node">
+      <UniqueIdentifier>{69ec8c60-121d-4446-8023-5393e2b64046}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{19c35c5e-67b9-4a6d-8a05-2b83a62c5edc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

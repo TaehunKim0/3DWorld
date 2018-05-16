@@ -14,3 +14,7 @@
 #include"Singleton.h"
 #include"D3DApp.h"
 #include"D3DRenderer.h"
+
+#include"GameObject.h"
+#include"Scene.h"
+#include"Director.h"
