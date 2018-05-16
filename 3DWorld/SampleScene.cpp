@@ -22,5 +22,7 @@ void SampleScene::Update()
 
 void SampleScene::Render()
 {
+	Scene::SetUpMatrix();
+
 	GameObject::Render();
 }

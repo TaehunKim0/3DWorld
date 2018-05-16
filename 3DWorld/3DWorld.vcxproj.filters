@@ -24,9 +24,6 @@
     <ClCompile Include="Player1.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="MeshManager.cpp">
-      <Filter>Node</Filter>
-    </ClCompile>
     <ClCompile Include="Mesh.cpp">
       <Filter>Node</Filter>
     </ClCompile>
@@ -56,9 +53,6 @@
     </ClInclude>
     <ClInclude Include="Player1.h">
       <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="MeshManager.h">
-      <Filter>Node</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.h">
       <Filter>Node</Filter>

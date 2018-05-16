@@ -3,7 +3,18 @@
 
 
 GameObject::GameObject()
+	: m_Active(true)
+	, m_Name("")
+	, m_Parent(nullptr)
+	, m_Position(0.f,0.f,0.f)
+	, m_Rotation(0.f,0.f,0.f)
+	, m_RotX(0.f)
+	, m_RotY(0.f)
+	, m_RotZ(0.f)
+	, m_Scale(1.f,1.f,1.f)
+	, m_Size(0.f,0.f,0.f)
 {
+	D3DXMatrixIdentity(&m_wMatrix);
 }
 
 
@@ -13,7 +24,17 @@ GameObject::~GameObject()
 
 void GameObject::Update()
 {
-	
+	D3DXMATRIXA16 matS; //스케일 매트릭스
+	D3DXMATRIXA16 matR; //회전 매트릭스
+	D3DXMATRIXA16 matT; //이동 매트릭스
+
+	D3DXMatrixRotationX(&matR, m_RotX); //X 축 방향의 회전 매트릭스 설정
+	D3DXMatrixRotationY(&matR, m_RotY); //Y 축 방향의 회전 매트릭스 설정
+	D3DXMatrixRotationZ(&matR, m_RotZ); //Z 축 방향의 회전 매트릭스 설정
+
+	D3DXMatrixTranslation(&matT, m_Position.x, m_Position.y, m_Position.z);
+
+	m_wMatrix = matR * matT;
 }
 
 void GameObject::Render()

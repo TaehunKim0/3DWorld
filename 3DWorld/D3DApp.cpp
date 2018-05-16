@@ -29,14 +29,14 @@ bool D3DApp::Initialize(UINT width, UINT height, bool windowed)
 bool D3DApp::_CreateWindow()
 {	
 	WNDCLASS wc = {};
-	wc.lpszClassName = L"WalkingDead";
+	wc.lpszClassName = "WalkingDead";
 	wc.lpfnWndProc = WndProc;
 	wc.hCursor = LoadCursor(NULL, IDC_ARROW);
 
 	if (!RegisterClass(&wc))
 		return false;
 
-	HWND handle = CreateWindow(L"WalkingDead", L"WalkingDead", WS_OVERLAPPEDWINDOW, 0, 0, m_WindowWidth,m_WindowHeight, NULL, NULL, NULL, NULL);
+	HWND handle = CreateWindow("WalkingDead", "WalkingDead", WS_OVERLAPPEDWINDOW, 0, 0, m_WindowWidth,m_WindowHeight, NULL, NULL, NULL, NULL);
 
 	if (!handle)
 		return false;
