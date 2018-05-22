@@ -24,4 +24,8 @@ void Director::Render()
 
 void Director::ChangeScene(Scene * scene)
 {
+	if (m_CurrentScene)
+		SafeDelete(m_CurrentScene);
+
+	m_CurrentScene = scene;
 }

@@ -76,4 +76,15 @@ void Mesh::Update()
 void Mesh::Render()
 {
 	GameObject::Render();
+	
+	D3DRenderer::GetInstance()->GetDevice()->SetTransform(D3DTS_WORLD, &m_wMatrix); // 월드 매트릭스 셋팅
+																					//Tiger 렌더
+	for (DWORD i = 0; i < m_NumsMaterial; i++)
+	{
+		D3DRenderer::GetInstance()->GetDevice()->SetMaterial(&m_MeshMaterials[i]);
+		D3DRenderer::GetInstance()->GetDevice()->SetTexture(0, m_MeshTextures[i]);
+
+		m_Mesh->DrawSubset(i);
+	}
+
 }

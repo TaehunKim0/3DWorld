@@ -1,7 +1,7 @@
 #pragma once
 class GameObject
 {
-private:
+protected:
 	D3DXMATRIXA16 m_wMatrix; 
 
 	D3DXVECTOR3 m_Position;
