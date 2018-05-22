@@ -9,6 +9,7 @@ Mesh::Mesh()
 
 Mesh::~Mesh()
 {
+	//m_Mesh->Release();
 }
 
 Mesh * Mesh::Create(std::string fileName)

@@ -25,6 +25,7 @@ void SampleScene::Init()
 void SampleScene::Update()
 {
 	GameObject::Update();
+
 }
 
 void SampleScene::Render()

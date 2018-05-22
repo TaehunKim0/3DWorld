@@ -14,11 +14,30 @@ void Player1::Init()
 {
 	m_Mesh = Mesh::Create("Resource/Mesh/tiger.x");
 	AddChild(m_Mesh);
+
+
+
 }
 
 void Player1::Update()
 {
 	GameObject::Update();
+
+	if (GetAsyncKeyState('A') & 0x8000)
+		m_Position.x -= 0.1f;
+	else if (GetAsyncKeyState('D') & 0x8000)
+		m_Position.x += 0.1f;
+
+	if (GetAsyncKeyState('W') & 0x8000)
+		m_Position.z += 0.1f;
+	else if (GetAsyncKeyState('S') & 0x8000)
+		m_Position.z -= 0.1f;
+
+	if (GetAsyncKeyState('Q') & 0x8000)
+		m_Position.y -= 0.1f;
+	else if (GetAsyncKeyState('E') & 0x8000)
+		m_Position.y += 0.1f;
+
 }
 
 void Player1::Render()

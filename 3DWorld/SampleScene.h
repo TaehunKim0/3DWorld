@@ -4,7 +4,7 @@ class SampleScene : public Scene
 {
 public:
 	Player1* player;
-
+	Mesh* tiger;
 
 public:
 	SampleScene();
