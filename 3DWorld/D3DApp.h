@@ -9,11 +9,20 @@ private:
 	UINT m_WindowHeight;
 	bool m_Windowed;
 
+	float m_fOldTime;
+	float m_fCurTime;
+	float m_fDeltaTime;
+
 public:
 	D3DApp();
 	~D3DApp();
 
-	HWND GetHWND() {
+	inline float GetDeltaTime() {
+		return m_fDeltaTime;
+	}
+
+
+	inline HWND GetHWND() {
 		return m_hWnd;
 	}
 

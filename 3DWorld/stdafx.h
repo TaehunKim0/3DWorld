@@ -15,7 +15,9 @@
 #include"D3DApp.h"
 #include"D3DRenderer.h"
 
+#include"Input.h"
 #include"GameObject.h"
+#include"Camera.h"
 #include"Scene.h"
 #include"Director.h"
 #include"Mesh.h"

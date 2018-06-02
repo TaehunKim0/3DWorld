@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "SampleScene.h"
 #include"Player1.h"
+#include"Terrain.h"
 
 SampleScene::SampleScene()
 {
@@ -9,6 +10,10 @@ SampleScene::SampleScene()
 
 	AddChild(player);
 
+	terrain = new Terrain();
+	terrain->Init();
+
+	AddChild(terrain);
 	
 }
 
@@ -23,13 +28,16 @@ void SampleScene::Init()
 
 void SampleScene::Update()
 {
-	GameObject::Update();
+	Scene::Update();
+
+	printf("X : %f\n", Input::GetInstance()->GetMousePosition().x);
+
+
+	//printf("Delta : %f\n", Input::GetInstance()->GetDeltaMove().x);
 
 }
 
 void SampleScene::Render()
 {
-	Scene::SetUpMatrix();
-
-	GameObject::Render();
+	Scene::Render();
 }

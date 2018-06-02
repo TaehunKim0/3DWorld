@@ -16,6 +16,10 @@ bool D3DApp::Initialize(UINT width, UINT height, bool windowed)
 	m_WindowWidth = width;
 	m_WindowHeight = height;
 
+	m_fOldTime = GetTickCount();
+	m_fCurTime = 0.f;
+	m_fDeltaTime = 0.f;
+
 	if (_CreateWindow() == false)
 		return false;
 
@@ -65,6 +69,8 @@ void D3DApp::RunGame()
 
 	while (msg.message != WM_QUIT)
 	{
+
+
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{
 			TranslateMessage(&msg);
@@ -73,6 +79,12 @@ void D3DApp::RunGame()
 
 		else
 		{
+			m_fCurTime = GetTickCount();
+			m_fDeltaTime = (m_fCurTime - m_fOldTime) / 1000.f;
+
+			m_fOldTime = m_fCurTime;
+
+			Input::GetInstance()->Update();
 			D3DRenderer::GetInstance()->RenderBegin();
 			Director::GetInstance()->Update();
 			Director::GetInstance()->Render();
