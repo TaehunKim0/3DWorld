@@ -9,9 +9,8 @@ SampleScene::SampleScene()
 
 	AddChild(player);
 
-	D3DRenderer::GetInstance()->GetDevice()->SetRenderState(D3DRS_AMBIENT, 0xffffffff);
+	
 }
-
 
 SampleScene::~SampleScene()
 {

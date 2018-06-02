@@ -12,11 +12,8 @@ Player1::~Player1()
 
 void Player1::Init()
 {
-	m_Mesh = Mesh::Create("Resource/Mesh/tiger.x");
+	m_Mesh = Mesh::Create("./Resource/Mesh/", "TombStone.x");
 	AddChild(m_Mesh);
-
-
-
 }
 
 void Player1::Update()
@@ -37,6 +34,9 @@ void Player1::Update()
 		m_Position.y -= 0.1f;
 	else if (GetAsyncKeyState('E') & 0x8000)
 		m_Position.y += 0.1f;
+
+
+
 
 }
 

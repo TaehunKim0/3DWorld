@@ -20,6 +20,5 @@ public:
 	LPDIRECT3DDEVICE9 GetDevice() {
 		return m_Device;
 	}
-
+	
 };
-

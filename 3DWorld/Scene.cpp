@@ -30,7 +30,7 @@ void Scene::SetUpMatrix()
 	device->SetTransform(D3DTS_VIEW, &matView);
 
 	//프로젝션 행렬
-	D3DXMatrixPerspectiveFovLH(&matProj, D3DX_PI / 4, 1.f, 1.f, 100.f);
+	D3DXMatrixPerspectiveFovLH(&matProj, D3DX_PI / 4, 1280.f/720.f, 1.f, 1000.f);
 	device->SetTransform(D3DTS_PROJECTION, &matProj);
 
 }

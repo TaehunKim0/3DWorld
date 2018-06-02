@@ -1,7 +1,7 @@
 #pragma once
 class Mesh : public GameObject
 {
-private:
+public:
 	D3DMATERIAL9* m_MeshMaterials;
 	LPDIRECT3DTEXTURE9* m_MeshTextures;
 	LPD3DXMESH m_Mesh;
@@ -12,8 +12,8 @@ public:
 	Mesh();
 	virtual ~Mesh();
 
-	static Mesh* Create(std::string fileName);
-	bool Init(std::string fileName);
+	static Mesh* Create(std::string fileName, std::string Name);
+	bool Init(std::string fileName, std::string Name);
 
 	virtual void Update();
 	virtual void Render();
