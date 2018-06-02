@@ -35,8 +35,12 @@ void Player1::Update()
 	else if (GetAsyncKeyState('E') & 0x8000)
 		m_Position.y += 0.1f;
 
-
-
+	if (GetAsyncKeyState('R') & 0x8000)
+		m_RotX += 0.1f;
+	if (GetAsyncKeyState('T') & 0x8000)
+		m_RotY += 0.1f;
+	if (GetAsyncKeyState('Y') & 0x8000)
+		m_RotZ += 0.1f;
 
 }
 

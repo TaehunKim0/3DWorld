@@ -16,8 +16,12 @@ GameObject::GameObject()
 	, m_UseParentMatrix(1)
 {
 	D3DXMatrixIdentity(&m_wMatrix);
+	D3DXMatrixIdentity(&matS);
+	D3DXMatrixIdentity(&matRotX);
+	D3DXMatrixIdentity(&matRotY);
+	D3DXMatrixIdentity(&matRotZ);
+	D3DXMatrixIdentity(&matT);
 }
-
 
 GameObject::~GameObject()
 {
@@ -25,17 +29,13 @@ GameObject::~GameObject()
 
 void GameObject::SetMatrix()
 {
-	D3DXMATRIXA16 matS; //스케일 매트릭스
-	D3DXMATRIXA16 matR; //회전 매트릭스
-	D3DXMATRIXA16 matT; //이동 매트릭스
-
-	D3DXMatrixRotationX(&matR, m_RotX); //X 축 방향의 회전 매트릭스 설정
-	D3DXMatrixRotationY(&matR, m_RotY); //Y 축 방향의 회전 매트릭스 설정
-	D3DXMatrixRotationZ(&matR, m_RotZ); //Z 축 방향의 회전 매트릭스 설정
+	D3DXMatrixRotationX(&matRotX, m_RotX); //X 축 방향의 회전 매트릭스 설정
+	D3DXMatrixRotationY(&matRotY, m_RotY); //Y 축 방향의 회전 매트릭스 설정
+	D3DXMatrixRotationZ(&matRotZ, m_RotZ); //Z 축 방향의 회전 매트릭스 설정
 
 	D3DXMatrixTranslation(&matT, m_Position.x, m_Position.y, m_Position.z);
 
-	m_wMatrix = matR * matT;
+	m_wMatrix = matS* matRotX * matRotY * matRotZ * matT;
 
 	if (m_Parent && m_UseParentMatrix)
 	{

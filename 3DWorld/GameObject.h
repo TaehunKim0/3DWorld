@@ -4,6 +4,12 @@ class GameObject
 protected:
 	D3DXMATRIXA16 m_wMatrix; 
 
+	D3DXMATRIXA16 matS; //스케일 매트릭스
+	D3DXMATRIXA16 matRotY; //회전 매트릭스
+	D3DXMATRIXA16 matRotX;
+	D3DXMATRIXA16 matRotZ;
+	D3DXMATRIXA16 matT; //이동 매트릭스
+
 	D3DXVECTOR3 m_Position;
 	D3DXVECTOR3 m_Scale;
 	D3DXVECTOR3 m_Rotation;

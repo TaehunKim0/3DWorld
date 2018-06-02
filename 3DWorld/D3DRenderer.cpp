@@ -38,6 +38,7 @@ bool D3DRenderer::Initialize(int width, int height, HWND hWnd, bool windowed)
 
 	m_Device->SetRenderState(D3DRS_ZENABLE, true);
 	m_Device->SetRenderState(D3DRS_LIGHTING, true);
+	m_Device->SetRenderState(D3DRS_SPECULARENABLE, true);
 
 	//
 	D3DLIGHT9 Light;
@@ -50,9 +51,13 @@ bool D3DRenderer::Initialize(int width, int height, HWND hWnd, bool windowed)
 	Light.Diffuse = D3DXCOLOR(1.f, 1.f, 1.f, 1.f); //³­¹İ»ç±¤
 	Light.Ambient = D3DXCOLOR(0.2f, 0.2f, 0.2f, 1.f); //ÁÖº¯±¤
 	Light.Specular = D3DXCOLOR(1.f, 1.f, 1.f, 1.f); //Á¤¹İ»ç±¤
+	
+	
 
 	m_Device->SetLight(0, &Light);
 	m_Device->LightEnable(0, true);
+
+	
 
 	return true;
 }
