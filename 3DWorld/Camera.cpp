@@ -6,7 +6,7 @@ Camera::Camera()
 	: m_fRotX(0)
 	, m_fRotY(0)
 {
-	EyePt = D3DXVECTOR3(0.f, 5.f, -20.f);
+	EyePt = D3DXVECTOR3(0.f, 10.f, -30.f);
 	LookAtPt = D3DXVECTOR3(0.f, 0.f, 0.f);
 	UpVec = D3DXVECTOR3(0.f, 1.f, 0.f);
 }

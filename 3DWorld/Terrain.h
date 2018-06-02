@@ -3,7 +3,8 @@
 struct tagVertex
 {
 	D3DXVECTOR3 vPos;
-	D3DXVECTOR2 vUV;
+	//D3DXVECTOR3 vNormal;
+	D3DXCOLOR Diffuse;
 }typedef VERTEX;
 
 
