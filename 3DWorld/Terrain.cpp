@@ -38,7 +38,7 @@ void Terrain::Init()
 	vertex[0].Diffuse = D3DXCOLOR(1, 1, 1, 1);
 	//vertex[0].vNormal = D3DXVECTOR3(0,1,0);
 
-	vertex[1].vPos = D3DXVECTOR3(25.f, 10.f, 25.f);
+	vertex[1].vPos = D3DXVECTOR3(25.f, 0.f, 25.f);
 	vertex[1].Diffuse = D3DXCOLOR(1, 1, 1, 1);
 	//vertex[1].vNormal = D3DXVECTOR3(0, 1, 0); //*D3DXVec3Normalize(&D3DXVECTOR3(), &D3DXVECTOR3(-1, 1, -1));
 
@@ -65,6 +65,9 @@ void Terrain::Init()
 void Terrain::Update()
 {
 	GameObject::Update();
+
+	//printf("m_RotY : %f\n", m_RotY);
+
 }
 
 void Terrain::Render()

@@ -65,8 +65,6 @@ void D3DApp::RunGame()
 	MSG msg;
 	msg = {};
 
-
-
 	while (msg.message != WM_QUIT)
 	{
 

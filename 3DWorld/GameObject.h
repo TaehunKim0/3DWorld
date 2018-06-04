@@ -32,7 +32,7 @@ public:
 	GameObject();
 	virtual ~GameObject();
 
-	void SetMatrix();
+	virtual void SetMatrix();
 
 	virtual void Update();
 	virtual void Render();

@@ -15,6 +15,8 @@ INT WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, INT)
 	if (app->Initialize(1280, 720, 0))
 		app->RunGame();
 
+	
+
 	app->Release();
 
 #if _DEBUG

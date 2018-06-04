@@ -33,7 +33,9 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Bases</Filter>
     </ClCompile>
-    <ClCompile Include="Terrain.cpp" />
+    <ClCompile Include="Terrain.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -70,7 +72,10 @@
     <ClInclude Include="Camera.h">
       <Filter>Bases</Filter>
     </ClInclude>
-    <ClInclude Include="Terrain.h" />
+    <ClInclude Include="Terrain.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomMath.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Bases">

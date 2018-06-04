@@ -5,11 +5,7 @@ struct tagVertex
 	D3DXVECTOR3 vPos;
 	//D3DXVECTOR3 vNormal;
 	D3DXCOLOR Diffuse;
-}typedef VERTEX;
-
-
-
-
+}typedef VERTEX; 
 
 class Terrain : public GameObject
 {
