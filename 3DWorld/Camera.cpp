@@ -59,7 +59,7 @@ void Camera::Update()
 		LookAtPt -= vLook;
 	}
 
-	printf("EyePt Z : %f\n", EyePt.z);
+	//printf("EyePt Z : %f\n", EyePt.z);
 
 	D3DXMatrixLookAtLH(&matView, &EyePt, &LookAtPt, &UpVec);
 

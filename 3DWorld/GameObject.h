@@ -1,7 +1,7 @@
 #pragma once
 class GameObject
 {
-protected:
+public:
 	D3DXMATRIXA16 m_wMatrix; 
 
 	D3DXMATRIXA16 matS; //스케일 매트릭스
@@ -32,7 +32,7 @@ public:
 	GameObject();
 	virtual ~GameObject();
 
-	virtual void SetMatrix();
+	void SetMatrix();
 
 	virtual void Update();
 	virtual void Render();
@@ -40,9 +40,15 @@ public:
 	void AddChild(GameObject* child);
 	void RemoveChild(GameObject* child);
 
+	inline void SetScale(float x, float y, float z)
+	{
+		m_Scale.x = x;
+		m_Scale.y = y;
+		m_Scale.z = z;
+	}
 
 public:
-	void Translate(float x, float y, float z)
+	inline void Translate(float x, float y, float z)
 	{
 		m_Position.x += x;
 		m_Position.y += y;

@@ -93,6 +93,9 @@ bool Mesh::Init(std::string fileName , std::string Name)
 void Mesh::Update()
 {
 	GameObject::Update();
+
+	
+
 }
 
 void Mesh::Render()

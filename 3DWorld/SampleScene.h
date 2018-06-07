@@ -8,7 +8,7 @@ public:
 	Mesh* tiger;
 
 	Terrain* terrain;
-
+	Camera * m_Camera;
 public:
 	SampleScene();
 	~SampleScene();

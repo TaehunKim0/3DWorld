@@ -15,6 +15,9 @@ SampleScene::SampleScene()
 
 	AddChild(terrain);
 	
+	m_Camera = new Camera();
+	AddChild(m_Camera);
+
 }
 
 SampleScene::~SampleScene()
@@ -30,9 +33,9 @@ void SampleScene::Update()
 {
 	Scene::Update();
 
-	printf("X : %f\n", Input::GetInstance()->GetMousePosition().x);
+	printf("Scene ÀÇ RotY : %f\n", m_RotY);
 
-
+	//printf("X : %f\n", Input::GetInstance()->GetMousePosition().x);
 	//printf("Delta : %f\n", Input::GetInstance()->GetDeltaMove().x);
 
 }

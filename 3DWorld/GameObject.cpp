@@ -29,14 +29,22 @@ GameObject::~GameObject()
 
 void GameObject::SetMatrix()
 {
+	//Scale 설정
+	D3DXMatrixScaling(&matS, m_Scale.x, m_Scale.y, m_Scale.z);
+
+	//Rotation 설정
 	D3DXMatrixRotationX(&matRotX, m_RotX); //X 축 방향의 회전 매트릭스 설정
 	D3DXMatrixRotationY(&matRotY, m_RotY); //Y 축 방향의 회전 매트릭스 설정
 	D3DXMatrixRotationZ(&matRotZ, m_RotZ); //Z 축 방향의 회전 매트릭스 설정
+	D3DXMATRIX matR = matRotZ * matRotX * matRotY;
 
+	//Translation 설정
 	D3DXMatrixTranslation(&matT, m_Position.x, m_Position.y, m_Position.z);
 
-	m_wMatrix = matS* matRotX * matRotY * matRotZ * matT;
+	//S * R * T
+	m_wMatrix = matS * matR * matT;
 
+	//부모의 Matrix 계산
 	if (m_Parent && m_UseParentMatrix)
 	{
 		m_wMatrix *= m_Parent->m_wMatrix;
