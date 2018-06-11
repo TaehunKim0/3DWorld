@@ -24,19 +24,14 @@ void Player1::Update()
 
 	printf("플레이어의 Rot Y : %f\n", m_RotY);
 
-	if (GetAsyncKeyState('A') & 0x8000)
+	if (GetAsyncKeyState(VK_LEFT) & 0x8000)
 		m_RotY -= 0.1f;
-	else if (GetAsyncKeyState('D') & 0x8000)
+	else if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
 		m_RotY += 0.1f;
-	if (GetAsyncKeyState('W') & 0x8000)
+	if (GetAsyncKeyState(VK_UP) & 0x8000)
 		m_Position.z += 0.1f;
-	else if (GetAsyncKeyState('S') & 0x8000)
+	else if (GetAsyncKeyState(VK_DOWN) & 0x8000)
 		m_Position.z -= 0.1f;
-	if (GetAsyncKeyState('Q') & 0x8000)
-		m_Position.y -= 0.1f;
-	else if (GetAsyncKeyState('E') & 0x8000)
-		m_Position.y += 0.1f;
-
 }
 
 void Player1::Render()

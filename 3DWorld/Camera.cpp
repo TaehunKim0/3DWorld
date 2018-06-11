@@ -9,6 +9,7 @@ Camera::Camera()
 	EyePt = D3DXVECTOR3(0.f, 10.f, -30.f);
 	LookAtPt = D3DXVECTOR3(0.f, 0.f, 0.f);
 	UpVec = D3DXVECTOR3(0.f, 1.f, 0.f);
+	m_Target = nullptr;
 }
 
 Camera::~Camera()
@@ -29,7 +30,7 @@ void Camera::Update()
 
 	D3DXMATRIXA16 matRotX;
 	D3DXMATRIXA16 matRotY;
-	
+
 	if (Input::GetInstance()->GetKeyState(VK_RBUTTON) == KeyState::Pressed)
 	{
 		m_fRotX -= Input::GetInstance()->GetDeltaMove().x * 0.005;
@@ -43,20 +44,28 @@ void Camera::Update()
 
 	D3DXVECTOR3 vLook; //눈에서 바라볼 방향
 
-	D3DXVec3TransformNormal(&vLook, &D3DXVECTOR3(0, 0, 1), &matRot);
+	D3DXVec3TransformNormal(&vLook, &D3DXVECTOR3(0,0,1), &matRot);
 
 	LookAtPt = EyePt + vLook; //눈에서 바라볼 방향을 더함
 				//이 자리에 타겟의 위치를 넣으면 카메라가 그 타겟을 바라봄.
 
-	if (Input::GetInstance()->GetKeyState(VK_UP) == KeyState::Pressed)
+	if (Input::GetInstance()->GetKeyState('W') == KeyState::Pressed)
 	{
 		EyePt += vLook;
 		LookAtPt += vLook;
 	}
-	if (Input::GetInstance()->GetKeyState(VK_DOWN) == KeyState::Pressed)
+	if (Input::GetInstance()->GetKeyState('S') == KeyState::Pressed)
 	{
 		EyePt -= vLook;
 		LookAtPt -= vLook;
+	}
+	if (Input::GetInstance()->GetKeyState('A') == KeyState::Pressed)
+	{
+		//LeftOrRight(-1.f);
+	}
+	if (Input::GetInstance()->GetKeyState('D') == KeyState::Pressed)
+	{
+		//LeftOrRight(1.f);
 	}
 
 	//printf("EyePt Z : %f\n", EyePt.z);
@@ -68,8 +77,26 @@ void Camera::Update()
 	//프로젝션 행렬
 	D3DXMatrixPerspectiveFovLH(&matProj, D3DX_PI / 4, 1280.f / 720.f, 1.f, 1000.f);
 	device->SetTransform(D3DTS_PROJECTION, &matProj);
+}
 
+void Camera::SetTarget(D3DXVECTOR3* ptarget)
+{
+	m_Target = ptarget;
+}
 
+void Camera::ForwardOrBackword(float fDelta)
+{
 
+}
 
+void Camera::LeftOrRight(float fDelta)
+{
+	EyePt.x += fDelta;
+	LookAtPt.x += fDelta;
+}
+
+void Camera::UpOrDown(float fDelta)
+{
+	EyePt.y += fDelta;
+	LookAtPt.y += fDelta;
 }
