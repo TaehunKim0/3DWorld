@@ -18,7 +18,7 @@ SampleScene::SampleScene()
 	m_Camera = new Camera();
 	AddChild(m_Camera);
 
-	m_Camera->SetTarget(&player->m_Position);
+	m_Camera->SetTarget(player);
 
 }
 

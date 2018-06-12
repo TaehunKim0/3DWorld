@@ -10,7 +10,7 @@ public:
 	D3DXVECTOR3 LookAtPt;
 	D3DXVECTOR3 UpVec;
 
-	D3DXVECTOR3* m_Target;
+	GameObject* m_Target;
 
 	float m_fRotX;
 	float m_fRotY;
@@ -21,7 +21,7 @@ public:
 
 	void Update();
 
-	void SetTarget(D3DXVECTOR3* ptarget);
+	void SetTarget(GameObject* ptarget);
 
 	void ForwardOrBackword(float fDelta);
 	void LeftOrRight(float fDelta);

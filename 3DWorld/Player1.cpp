@@ -25,9 +25,9 @@ void Player1::Update()
 	printf("플레이어의 Rot Y : %f\n", m_RotY);
 
 	if (GetAsyncKeyState(VK_LEFT) & 0x8000)
-		m_RotY -= 0.1f;
+		m_Position.x -= 0.1f;
 	else if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
-		m_RotY += 0.1f;
+		m_Position.x += 0.1f;
 	if (GetAsyncKeyState(VK_UP) & 0x8000)
 		m_Position.z += 0.1f;
 	else if (GetAsyncKeyState(VK_DOWN) & 0x8000)
