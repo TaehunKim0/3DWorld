@@ -7,19 +7,21 @@ SampleScene::SampleScene()
 {
 	player = new Player1();
 	player->Init();
-
-	AddChild(player);
-
 	terrain = new Terrain();
 	terrain->Init();
 
 	AddChild(terrain);
-	
-	m_Camera = new Camera();
-	AddChild(m_Camera);
 
-	m_Camera->SetTarget(player);
+	Mesh2 = Mesh::Create("./Resource/Mesh/", "Tree01.x");
+	Mesh2->m_Position.x = 10.f;
+	Mesh2->SetScale(0.03f, 0.03f, 0.03f);
 
+	AddChild(Mesh2);
+	AddChild(player);
+	AddChild(Camera::GetInstance());
+
+	PlantingTreeRandom(1);
+	Camera::GetInstance()->SetTarget(player);
 }
 
 SampleScene::~SampleScene()
@@ -45,4 +47,45 @@ void SampleScene::Update()
 void SampleScene::Render()
 {
 	Scene::Render();
+}
+
+void SampleScene::PlantingTreeRandom(int TreeNumber)
+{
+	int fMinX = -40;
+	int fMaxX = 40;
+
+	int fMinZ = -40;
+	int fMaxZ = 40;
+
+	Trees = new Mesh[TreeNumber];
+	for (int i = 0; i < TreeNumber; i++)
+	{
+		Trees[i].Init("./Resource/Mesh/", "Tree01.x");
+		Trees[i].SetScale(0.03f, 0.03f, 0.03f);
+
+		AddChild(&Trees[i]);
+	}
+
+	for (int i = 0; i < TreeNumber; i++)
+	{
+		float x, z;
+
+		x = (rand() % fMaxX) + fMinX;
+		z = (rand() % fMaxZ) + fMinZ;
+
+		Trees[i].SetPosition(x, 0, z);
+
+	}
+
+	/*
+	나무 위치는 -50,50           50,50
+				
+	
+				
+				
+
+			   -50,-50          50,-50
+	*/
+	
+
 }

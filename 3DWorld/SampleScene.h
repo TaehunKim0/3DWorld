@@ -5,10 +5,12 @@ class SampleScene : public Scene
 {
 public:
 	Player1* player;
-	Mesh* tiger;
-
 	Terrain* terrain;
-	Camera * m_Camera;
+
+	Mesh* tiger;
+	Mesh* Mesh2;
+	Mesh* Trees;
+
 public:
 	SampleScene();
 	~SampleScene();
@@ -17,6 +19,8 @@ public:
 
 	void Update();
 	void Render();
+
+	void PlantingTreeRandom(int TreeNumber);
 
 };
 

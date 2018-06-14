@@ -34,27 +34,27 @@ void Terrain::Init()
 
 	m_pVB->Lock(0, 0, (void**)&vertex, 0);
 
-	vertex[0].vPos = D3DXVECTOR3(-25.f, 0.f, 25.f);
+	vertex[0].vPos = D3DXVECTOR3(-50.f, 0.f, 50.f);
 	vertex[0].Diffuse = D3DXCOLOR(1, 1, 1, 1);
 	//vertex[0].vNormal = D3DXVECTOR3(0,1,0);
 
-	vertex[1].vPos = D3DXVECTOR3(25.f, 0.f, 25.f);
+	vertex[1].vPos = D3DXVECTOR3(50.f, 0.f, 50.f);
 	vertex[1].Diffuse = D3DXCOLOR(1, 1, 1, 1);
 	//vertex[1].vNormal = D3DXVECTOR3(0, 1, 0); //*D3DXVec3Normalize(&D3DXVECTOR3(), &D3DXVECTOR3(-1, 1, -1));
 
-	vertex[2].vPos = D3DXVECTOR3(25.f, 0.f, -25.f);
+	vertex[2].vPos = D3DXVECTOR3(50.f, 0.f, -50.f);
 	vertex[2].Diffuse = D3DXCOLOR(1, 1, 1, 1);
 	//vertex[2].vNormal = D3DXVECTOR3(0, 1, 0);
 
-	vertex[3].vPos = D3DXVECTOR3(-25.f, 0.f, 25.f);
+	vertex[3].vPos = D3DXVECTOR3(-50.f, 0.f, 50.f);
 	vertex[3].Diffuse = D3DXCOLOR(1, 1, 1, 1);
 	//vertex[3].vNormal = D3DXVECTOR3(0, 1, 0);
 
-	vertex[4].vPos = D3DXVECTOR3(25.f, 0.f, -25.f);
+	vertex[4].vPos = D3DXVECTOR3(50.f, 0.f, -50.f);
 	vertex[4].Diffuse = D3DXCOLOR(1, 1, 1, 1);
 	//vertex[4].vNormal = D3DXVECTOR3(0, 1, 0);
 
-	vertex[5].vPos = D3DXVECTOR3(-25.f, 0.f, -25.f);
+	vertex[5].vPos = D3DXVECTOR3(-50.f, 0.f, -50.f);
 	vertex[5].Diffuse = D3DXCOLOR(1, 1, 1, 1);
 	//vertex[5].vNormal = D3DXVECTOR3(0, 1, 0);
 

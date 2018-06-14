@@ -1,5 +1,5 @@
 #pragma once
-class Camera : public GameObject
+class Camera : public GameObject , public Singleton<Camera>
 {
 public:
 	D3DXMATRIXA16 matWorld;

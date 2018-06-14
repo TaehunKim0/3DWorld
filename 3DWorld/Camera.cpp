@@ -32,7 +32,6 @@ void Camera::Update()
 	D3DXMATRIXA16 matRotY;
 	D3DXVECTOR3 vLook; //눈에서 바라볼 방향
 
-
 	if (Input::GetInstance()->GetKeyState(VK_RBUTTON) == KeyState::Pressed)
 	{
 		m_fRotX -= Input::GetInstance()->GetDeltaMove().x / 100;
@@ -43,7 +42,7 @@ void Camera::Update()
 	D3DXMatrixRotationX(&matRotY, m_fRotY);
 
 	matRot = matRotX * matRotY;
-	D3DXVec3TransformCoord(&vLook, &D3DXVECTOR3(0,0,0), &matRot);
+	D3DXVec3TransformNormal(&vLook, &D3DXVECTOR3(0, 0, 1), &matRot);
 
 	//D3DXVec3TransformNormal(&vLook, &D3DXVECTOR3(0,0,1), &matRot); //회전한 곳의 방향을 vLook에 넣음
 	//D3DXVec3TransformNormal -> 이 함수는 3차원 벡터와 행렬의 곱이고 여러 변환들 (이동 , 크기 , 회전)을 적용할 때 쓰임.
@@ -51,7 +50,7 @@ void Camera::Update()
 	//D3DXVec3TransformCoord -> 이 함수도 3차원 벡터와 행렬의 곱인데 3차원 벡터를 4차원 벡터로 바꿀 때 마지막을 1 로 해 이동을 적용 시킴
 	//vLook 은 좌표 개념이 된다.
 
-	LookAtPt = EyePt + vLook;//눈에서 바라볼 방향을 더함
+	//LookAtPt = EyePt + vLook;//눈에서 바라볼 방향을 더함
 				//이 자리에 타겟의 위치를 넣으면 카메라가 그 타겟을 바라봄.
 
 	if (m_Target)
@@ -74,7 +73,7 @@ void Camera::Update()
 	}
 	if (Input::GetInstance()->GetKeyState('A') == KeyState::Pressed)
 	{
-		//LeftOrRight(-1.f);
+		
 	}
 	if (Input::GetInstance()->GetKeyState('D') == KeyState::Pressed)
 	{

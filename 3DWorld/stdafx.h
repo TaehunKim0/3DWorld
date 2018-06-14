@@ -10,6 +10,8 @@
 #include<mmsystem.h>
 #include<vector>
 #include<list>
+#include<time.h>
+
 #include"CustomMath.h"
 #include"Singleton.h"
 #include"D3DApp.h"

@@ -25,6 +25,8 @@ INT WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, INT)
 		printf("\n");
 	}
 
+	srand(time(NULL));
+
 	if (app->Initialize(1280, 720, 0))
 		app->RunGame();
 
