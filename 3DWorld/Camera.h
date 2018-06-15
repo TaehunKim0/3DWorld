@@ -1,4 +1,5 @@
 #pragma once
+
 class Camera : public GameObject , public Singleton<Camera>
 {
 public:
@@ -12,8 +13,10 @@ public:
 
 	GameObject* m_Target;
 
-	float m_fRotX;
-	float m_fRotY;
+	bool CameraFreeView;
+
+	float fRotX;
+	float fRotY;
 
 public:
 	Camera();
@@ -21,8 +24,12 @@ public:
 
 	void Update();
 
-	void SetTarget(GameObject* ptarget);
+public:
+	void SetTarget(GameObject* target);
+	void SetCameraThirdPerson(GameObject* target);
+	void SetCameraFreeView();
 
+public:
 	void ForwardOrBackword(float fDelta);
 	void LeftOrRight(float fDelta);
 	void UpOrDown(float fDelta);

@@ -27,7 +27,6 @@ Mesh * Mesh::Create(std::string fileName, std::string Name)
 bool Mesh::Init(std::string fileName , std::string Name)
 {
 	LPD3DXBUFFER mtrBuffer;
-
 	std::string bf;
 
 	bf = fileName + Name;
@@ -38,6 +37,7 @@ bool Mesh::Init(std::string fileName , std::string Name)
 		MessageBox(NULL, "X File None", "3DWorld.exe", MB_OK);
 		return false;
 	}
+
 	//재질정보와 텍스쳐 정보 따로 뽑아낸다.
 	D3DXMATERIAL* d3dMaterials = (D3DXMATERIAL*)mtrBuffer->GetBufferPointer();
 
@@ -93,9 +93,6 @@ bool Mesh::Init(std::string fileName , std::string Name)
 void Mesh::Update()
 {
 	GameObject::Update();
-
-	
-
 }
 
 void Mesh::Render()

@@ -20,6 +20,8 @@ private:
 	bool m_PrevKeyState[256];
 	bool m_NowKeyState[256];
 
+	bool m_RButtonDown;
+
 	bool prevState;
 	bool nowState;
 
@@ -30,6 +32,7 @@ public:
 	Input();
 	~Input();
 
+	void ButtonDown(bool down);
 	void Update();
 
 	KeyState GetKeyState(int key);
@@ -43,6 +46,11 @@ public:
 	inline D3DXVECTOR2 GetDeltaMove()
 	{
 		return m_vDeltaMove;
+	}
+
+	inline bool GetButtonDown()
+	{
+		return m_RButtonDown;
 	}
 
 

@@ -36,6 +36,9 @@
     <ClCompile Include="Terrain.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="ResourceMgr.cpp">
+      <Filter>Node</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -76,6 +79,9 @@
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="CustomMath.h" />
+    <ClInclude Include="ResourceMgr.h">
+      <Filter>Node</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Bases">

@@ -13,8 +13,6 @@ Player1::~Player1()
 void Player1::Init()
 {
 	m_Mesh = Mesh::Create("./Resource/Mesh/", "TombStone.x");
-
-
 	AddChild(m_Mesh);
 }
 

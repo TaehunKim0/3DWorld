@@ -21,7 +21,7 @@ SampleScene::SampleScene()
 	AddChild(Camera::GetInstance());
 
 	PlantingTreeRandom(1);
-	Camera::GetInstance()->SetTarget(player);
+	Camera::GetInstance()->SetCameraThirdPerson(player);
 }
 
 SampleScene::~SampleScene()

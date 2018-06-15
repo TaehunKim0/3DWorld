@@ -11,6 +11,7 @@
 #include<vector>
 #include<list>
 #include<time.h>
+#include<map>
 
 #include"CustomMath.h"
 #include"Singleton.h"

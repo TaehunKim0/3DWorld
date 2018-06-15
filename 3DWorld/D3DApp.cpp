@@ -97,6 +97,14 @@ LRESULT D3DApp::WndProc(HWND hwnd, UINT msg, WPARAM w, LPARAM l)
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		break;
+
+	case WM_RBUTTONDOWN:
+		Input::GetInstance()->ButtonDown(true);
+		break;
+
+	case WM_RBUTTONUP:
+		Input::GetInstance()->ButtonDown(false);
+		break;
 	}
 
 	return DefWindowProc(hwnd, msg, w, l);

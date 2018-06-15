@@ -5,14 +5,23 @@ Input::Input()
 {
 	ZeroMemory(m_PrevKeyState, sizeof(m_PrevKeyState));
 	ZeroMemory(m_NowKeyState, sizeof(m_NowKeyState));
+
+	m_RButtonDown = false;
 }
 
 Input::~Input()
 {
 }
 
+void Input::ButtonDown(bool down)
+{
+	m_RButtonDown = down;
+}
+
 void Input::Update()
 {
+	m_vDeltaMove = D3DXVECTOR2(0.f, 0.f);
+
 	UpdateKeyState();
 	UpdateMouseState();
 }
@@ -66,5 +75,4 @@ void Input::UpdateMouseState()
 	m_vDeltaMove.y = m_vMousePosition.y - (float)(point.y);
 
 	m_vMousePosition = { (float)(point.x), (float)(point.y) };
-
 }
