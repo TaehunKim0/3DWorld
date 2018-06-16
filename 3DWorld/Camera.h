@@ -10,6 +10,8 @@ public:
 	D3DXVECTOR3 EyePt;
 	D3DXVECTOR3 LookAtPt;
 	D3DXVECTOR3 UpVec;
+	D3DXVECTOR3 RightVec;
+
 
 	GameObject* m_Target;
 

@@ -10,9 +10,13 @@ inline float Vector3Length(D3DXVECTOR3 vector) //길이, 크기
 inline void Vector3Normalize(D3DXVECTOR3* OutPut, D3DXVECTOR3 Input) //정규화
 {
 	float fLength = Vector3Length(Input);
-	OutPut->x = Input.x / fLength;
-	OutPut->y = Input.y / fLength;
-	OutPut->z = Input.z / fLength;
+
+	if (fLength > 0)
+	{
+		OutPut->x = Input.x / fLength;
+		OutPut->y = Input.y / fLength;
+		OutPut->z = Input.z / fLength;
+	}
 }
 
 inline float Vector3Dot(D3DXVECTOR3* vec1, D3DXVECTOR3* vec2) //내적
@@ -32,13 +36,16 @@ inline void MatrixIdentity(D3DXMATRIX* mat)
 
 inline void MatrixTranslation(D3DXMATRIX* mat, float x, float y, float z) //행렬의 이동
 {
-	mat->_41 += x;
-	mat->_42 += y;
-	mat->_43 += z;
+	MatrixIdentity(mat);
+
+	mat->_41 = x;
+	mat->_42 = y;
+	mat->_43 = z;
 }
 
 inline void MatrixScaling(D3DXMATRIX* mat, float x, float y, float z)
 {
+	MatrixIdentity(mat);
 	//스케일 값이 0 이 되면 확대 축소가 안됨
 	mat->_11 = x;
 	mat->_22 = y;
@@ -47,6 +54,7 @@ inline void MatrixScaling(D3DXMATRIX* mat, float x, float y, float z)
 
 inline void MatrixRotationX(D3DXMATRIX* mat, float AngleX/*라디안 값*/) //X축 회전
 {
+	MatrixIdentity(mat);
 	mat->_22 = cos(AngleX);
 	mat->_23 = sin(AngleX);
 	mat->_32 = -sin(AngleX);
@@ -56,14 +64,16 @@ inline void MatrixRotationX(D3DXMATRIX* mat, float AngleX/*라디안 값*/) //X축 회
 
 inline void MatrixRotationY(D3DXMATRIX* mat, float AngleY/*라디안 값*/) //Y축 회전
 {
+	MatrixIdentity(mat);
 	mat->_11 = cos(AngleY);
 	mat->_13 = -sin(AngleY);
 	mat->_31 = sin(AngleY);
 	mat->_33 = cos(AngleY);
 }
 
-inline void MatrixRotationZ(D3DXMATRIX* mat, float AngleZ/*라디안 값*/) //Z축 회저
+inline void MatrixRotationZ(D3DXMATRIX* mat, float AngleZ/*라디안 값*/) //Z축 회전
 {
+	MatrixIdentity(mat);
 	mat->_11 = cos(AngleZ);
 	mat->_12 = sin(AngleZ);
 	mat->_21 = -sin(AngleZ);
@@ -72,6 +82,7 @@ inline void MatrixRotationZ(D3DXMATRIX* mat, float AngleZ/*라디안 값*/) //Z축 회
 
 inline void MatrixRotationYawPitchRoll(D3DXMATRIX* mat, float Yaw, float Pitch, float Roll)
 {
+	MatrixIdentity(mat);
 	D3DXMATRIX X, Y, Z;
 
 	MatrixIdentity(&Z);

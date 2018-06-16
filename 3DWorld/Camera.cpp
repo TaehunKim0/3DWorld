@@ -45,7 +45,7 @@ void Camera::Update()
 	D3DXMatrixRotationY(&matRotX, fRotX);
 	D3DXMatrixRotationX(&matRotY, fRotY);
 
-	matRot = matRotX * matRotY;
+	matRot = matRotY * matRotX;
 
 	if(CameraFreeView == false)
 	if (Input::GetInstance()->GetButtonDown() == true)
@@ -53,6 +53,9 @@ void Camera::Update()
 	
 
 	D3DXVec3TransformNormal(&vLook, &D3DXVECTOR3(0, 0, 1), &matRot); //볼 방향을 계산
+	D3DXVec3Cross(&RightVec, &UpVec, &LookAtPt);
+	D3DXVec3Normalize(&RightVec, &RightVec);
+
 
 	//D3DXVec3TransformNormal(&vLook, &D3DXVECTOR3(0,0,1), &matRot); //회전한 곳의 방향을 vLook에 넣음
 	//D3DXVec3TransformNormal -> 이 함수는 3차원 벡터와 행렬의 곱이고 여러 변환들 (이동 , 크기 , 회전)을 적용할 때 쓰임.
@@ -90,16 +93,20 @@ void Camera::Update()
 	}
 	if (Input::GetInstance()->GetKeyState('A') == KeyState::Pressed)
 	{
-		
+		EyePt += RightVec;
+		LookAtPt += RightVec;
 	}
 	if (Input::GetInstance()->GetKeyState('D') == KeyState::Pressed)
 	{
-		//LeftOrRight(1.f);
+		EyePt -= RightVec;
+		LookAtPt -= RightVec;
 	}
 
 	//월드 행렬
 	D3DXMatrixIdentity(&matWorld);
 	device->SetTransform(D3DTS_WORLD, &matWorld);
+
+
 
 	D3DXMatrixLookAtLH(&matView, &EyePt, &LookAtPt, &UpVec);
 	device->SetTransform(D3DTS_VIEW, &matView);

@@ -5,6 +5,8 @@ private:
 	LPDIRECT3D9 m_D3D;
 	LPDIRECT3DDEVICE9 m_Device;
 
+	bool m_bWireFrame;
+
 public:
 	D3DRenderer();
 	~D3DRenderer();

@@ -2,6 +2,7 @@
 #include "GameObject.h"
 
 
+
 GameObject::GameObject()
 	: m_Active(true)
 	, m_Name("")
@@ -14,6 +15,7 @@ GameObject::GameObject()
 	, m_Scale(1.f,1.f,1.f)
 	, m_Size(0.f,0.f,0.f)
 	, m_UseParentMatrix(1)
+	, m_fRadius(0.f)
 {
 	D3DXMatrixIdentity(&m_wMatrix);
 	D3DXMatrixIdentity(&matS);
@@ -50,6 +52,7 @@ void GameObject::SetMatrix()
 		m_wMatrix *= m_Parent->m_wMatrix;
 	}
 
+	D3DRenderer::GetInstance()->GetDevice()->SetTransform(D3DTS_WORLD, &m_wMatrix);
 }
 
 void GameObject::Update()
@@ -72,7 +75,8 @@ void GameObject::Render()
 
 	for (auto child : m_Children)
 	{
-		child->Render();
+		if(child->m_Active == true)
+			child->Render();
 	}
 }
 
@@ -87,4 +91,7 @@ void GameObject::AddChild(GameObject * child)
 
 void GameObject::RemoveChild(GameObject * child)
 {
+
+
+
 }

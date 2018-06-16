@@ -39,6 +39,9 @@
     <ClCompile Include="ResourceMgr.cpp">
       <Filter>Node</Filter>
     </ClCompile>
+    <ClCompile Include="WindMill.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -81,6 +84,9 @@
     <ClInclude Include="CustomMath.h" />
     <ClInclude Include="ResourceMgr.h">
       <Filter>Node</Filter>
+    </ClInclude>
+    <ClInclude Include="WindMill.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
