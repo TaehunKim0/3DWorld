@@ -16,6 +16,13 @@ class WindMill : public GameObject
 
 	bool bWingShoot;
 
+	LPDIRECT3DTEXTURE9 m_Texture;
+	D3DXVECTOR3 vWingPosition;
+	bool UsePm;
+
+	D3DXMATRIX mTemp;
+	D3DXVECTOR3 vDirTemp;
+
 
 public:
 	void Init();

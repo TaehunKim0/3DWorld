@@ -78,12 +78,8 @@ void Terrain::Init()
 			vertex[index].vPos = D3DXVECTOR3(j, (dwPixel[index] & 0x000000ff) / 10.f, i); //불러온 비트맵의 컬러 중 b 의 값과 AND 연산해서 참인 값을 적절히 10으로 나눠서 Y값을 설정한다.
 			vertex[index].vUV = D3DXVECTOR2((20.f * j) / dwTerrainX, (20.f * i) / dwTerrainZ); //0 ~ 128 의 배열을 0 ~ 20의 uv로 바꾸기 위해 Terrain의 X,Z로 나눠준다.
 																								//20을 곱하는 이유는 배열이 129 까지 가면 129 / 129 로 1 이 되니까 20을 곱해준다.
-			vertex[index].vNormal = D3DXVECTOR3(0, 1, 0);
 		}
 	}
-
-	m_pVB->Unlock();
-
 	if (FAILED(D3DRenderer::GetInstance()->GetDevice()->CreateIndexBuffer(sizeof(INDEX) * 128 * 128 * 2, 0, D3DFMT_INDEX32, D3DPOOL_MANAGED, &m_pIB, nullptr)))
 	{
 		printf("");
@@ -121,19 +117,46 @@ void Terrain::Init()
 			pindex[iTriIndex]._1 = indexArr[0];
 			pindex[iTriIndex]._2 = indexArr[1];
 			pindex[iTriIndex]._3 = indexArr[2];
+			//
 
 			//루프를 돌면서 인덱스를 높이면서 삼각형 그리는 순서를 다 설정해준다.
 			iTriIndex++;
 
+			D3DXVECTOR3 vSrc = vertex[indexArr[1]].vPos - vertex[indexArr[0]].vPos;
+			D3DXVECTOR3 vDest = vertex[indexArr[2]].vPos - vertex[indexArr[1]].vPos;
+			D3DXVECTOR3 vNormal;
+			D3DXVec3Cross(&vNormal, &vSrc, &vDest);
+
+			vertex[indexArr[0]].vNormal += vNormal;
+			vertex[indexArr[1]].vNormal += vNormal;
+			vertex[indexArr[2]].vNormal += vNormal;
+
+			//
 			pindex[iTriIndex]._1 = indexArr[0];
 			pindex[iTriIndex]._2 = indexArr[2];
 			pindex[iTriIndex]._3 = indexArr[3];
 
 			iTriIndex++;
+
+			vSrc = vertex[indexArr[3]].vPos - vertex[indexArr[2]].vPos;
+			vDest = vertex[indexArr[0]].vPos - vertex[indexArr[3]].vPos;
+			D3DXVec3Cross(&vNormal, &vSrc, &vDest);
+
+			vertex[indexArr[2]].vNormal += vNormal;
+			vertex[indexArr[3]].vNormal += vNormal;
+			vertex[indexArr[0]].vNormal += vNormal;
 		}
 	}
 
 	m_pIB->Unlock();
+
+	for (int i = 0; i < dwTerrainZ * dwTerrainX; i++) 
+	{
+		D3DXVec3Normalize(&vertex[i].vNormal, &vertex[i].vNormal);
+	}
+
+
+	m_pVB->Unlock();
 
 
 	CloseHandle(hFile);

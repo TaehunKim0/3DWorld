@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include "WindMill.h"
 
-VERTEX windmillVertex[] = 
+TEXVERTEX windmillVertex[] = 
 {
-	{D3DXVECTOR3(0.f,5.f,0.f), D3DXVECTOR3(0.f,0.f,0.f), D3DXCOLOR(1.f,1.f,1.f,1.f) },
-	{D3DXVECTOR3(2.f,0.f,-2.f), D3DXVECTOR3(0.f,0.f,0.f), D3DXCOLOR(1.f,1.f,1.f,1.f)},
-{ D3DXVECTOR3(-2.f,0.f,-2.f), D3DXVECTOR3(0.f,0.f,0.f), D3DXCOLOR(1.f,1.f,1.f,1.f) },
-{ D3DXVECTOR3(-2.f,0.f,2.f), D3DXVECTOR3(0.f,0.f,0.f), D3DXCOLOR(1.f,1.f,1.f,1.f) },
-{ D3DXVECTOR3(2.f,0.f,2.f), D3DXVECTOR3(0.f,0.f,0.f), D3DXCOLOR(1.f,1.f,1.f,1.f) },
+	{D3DXVECTOR3(0.f,5.f,0.f), D3DXVECTOR3(0.f,1.f,0.f), D3DXVECTOR2(0.25f,0.f) },
+	{D3DXVECTOR3(2.f,0.f,-2.f), D3DXVECTOR3(0.f,0.f,1.f),D3DXVECTOR2(0.5f,1.f)},
+{ D3DXVECTOR3(-2.f,0.f,-2.f), D3DXVECTOR3(0.f,0.f,1.f),  D3DXVECTOR2(0.f,1.f) },
+{ D3DXVECTOR3(-2.f,0.f,2.f), D3DXVECTOR3(0.f,0.f,-1.f),   D3DXVECTOR2(0.5f,1.f) },
+{ D3DXVECTOR3(2.f,0.f,2.f), D3DXVECTOR3(0.f,0.f,-1.f),    D3DXVECTOR2(0.f,1.f) },
 };
 
 VERTEX windmillWingVertex[] =
@@ -43,13 +43,19 @@ WindMill::~WindMill()
 
 void WindMill::Init()
 {
-	if (FAILED(D3DRenderer::GetInstance()->GetDevice()->CreateVertexBuffer(4 * sizeof(VERTEX), 0, VertexFVF, D3DPOOL_MANAGED, &m_pVB, nullptr)))
+	if (FAILED(D3DXCreateTextureFromFile(D3DRenderer::GetInstance()->GetDevice(),"./Resource/windmill_512.jpg", &m_Texture)))
+	{
+		printf("텍스쳐 생성 실패\n");
+	}
+
+
+	if (FAILED(D3DRenderer::GetInstance()->GetDevice()->CreateVertexBuffer(4 * sizeof(TEXVERTEX), 0, D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_TEX1, D3DPOOL_MANAGED, &m_pVB, nullptr)))
 	{
 		printf("xxxxx");
 	}
 	WingAngle = 0;
 
-	VERTEX* vertex = nullptr;
+	TEXVERTEX* vertex = nullptr;
 	m_pVB->Lock(0, 0, (VOID**)&vertex, 0);
 
 	memcpy(vertex, windmillVertex, sizeof(windmillVertex));
@@ -105,24 +111,26 @@ void WindMill::Init()
 	INDEX* index2 = nullptr;
 
 	m_pIBw->Lock(0, 0, (void**)&index2, 0);
-	index2[0]._1 = 8;
-	index2[0]._2 = 0;
-	index2[0]._3 = 1;
+	index2[0]._1 = 0;
+	index2[0]._2 = 1;
+	index2[0]._3 = 8;
 
-	index2[1]._1 = 8;
-	index2[1]._2 = 2;
-	index2[1]._3 = 3;
+	index2[1]._1 = 2;
+	index2[1]._2 = 3;
+	index2[1]._3 = 8;
 
 	index2[2]._1 = 8;
-	index2[2]._2 = 5;
-	index2[2]._3 = 4;
+	index2[2]._2 = 4;
+	index2[2]._3 = 5;
 
-	index2[3]._1 = 8;
-	index2[3]._2 = 7;
+	index2[3]._1 = 7;
+	index2[3]._2 = 8;
 	index2[3]._3 = 6;
 
 	m_pIBw->Unlock();
 	
+	vWingPosition = D3DXVECTOR3(0, 3.5, -1.5);
+	UsePm = true;
 }
 
 void WindMill::Update()
@@ -131,16 +139,7 @@ void WindMill::Update()
 	D3DXVec3TransformNormal(&vDir, &vDir, &matRotY);
 	D3DXVec3Normalize(&vDir, &vDir);
 
-	if (Input::GetInstance()->GetKeyState('1') == KeyState::Up)
-	{
-		bWingShoot = true;
-	}
 
-	if (bWingShoot)
-	{
-		m_Position.z -= 1.f;
-
-	}
 
 	/*
 	회전을 시키면 플레이어의 방향이 바뀌고
@@ -169,14 +168,30 @@ void WindMill::Update()
 		Camera::GetInstance()->EyePt -= vDir * Speed;
 	}
 
+
+
 	GameObject::Update();
+
+	if (Input::GetInstance()->GetKeyState('1') == KeyState::Up)
+	{
+		bWingShoot = true;
+		UsePm = false;
+
+		mTemp = (matRotY * matRotX * matRotZ) * matT;
+		vDirTemp = vDir;
+	}
+
+	if (bWingShoot)
+	{
+		vWingPosition += vDirTemp;
+	}
 
 	WingAngle -= 1.0f;
 
 	D3DXMATRIX mScale;
 	D3DXMATRIX RotZ;
 	D3DXMatrixScaling(&mScale, 2.f, 2.f, 2.f);
-	D3DXMatrixTranslation(&m_wingTransform, m_Position.x, m_Position.y, m_Position.z);
+	D3DXMatrixTranslation(&m_wingTransform, vWingPosition.x, vWingPosition.y, vWingPosition.z);
 	D3DXMatrixRotationZ(&RotZ, D3DXToRadian(WingAngle));
 
 	m_wingWorldTransform = mScale * RotZ * m_wingTransform;
@@ -187,17 +202,26 @@ void WindMill::Render()
 {
 	GameObject::Render();
 
-	m_wingWorldTransform *= m_wMatrix;
+	if (UsePm == true)
+	{
+		m_wingWorldTransform *= m_wMatrix;
+	}
+	else
+	{
+		m_wingWorldTransform *= mTemp;
+	}
 
-	D3DRenderer::GetInstance()->GetDevice()->SetMaterial(&m_Mtrl);
+	D3DRenderer::GetInstance()->GetDevice()->SetTexture(0, m_Texture);
+
+	//D3DRenderer::GetInstance()->GetDevice()->SetMaterial(&m_Mtrl);
 	D3DRenderer::GetInstance()->GetDevice()->SetIndices(m_pIB);
-	D3DRenderer::GetInstance()->GetDevice()->SetFVF(VertexFVF);
-	D3DRenderer::GetInstance()->GetDevice()->SetStreamSource(0, m_pVB, 0, sizeof(VERTEX));
+	D3DRenderer::GetInstance()->GetDevice()->SetFVF(D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_TEX1);
+	D3DRenderer::GetInstance()->GetDevice()->SetStreamSource(0, m_pVB, 0, sizeof(TEXVERTEX));
 	D3DRenderer::GetInstance()->GetDevice()->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, 5, 0, 4);
 	
 	D3DRenderer::GetInstance()->GetDevice()->SetTransform(D3DTS_WORLD, &m_wingWorldTransform);
 
-	D3DRenderer::GetInstance()->GetDevice()->SetMaterial(&m_Mtrl);
+	//D3DRenderer::GetInstance()->GetDevice()->SetMaterial(&m_Mtrl);
 	D3DRenderer::GetInstance()->GetDevice()->SetIndices(m_pIBw);
 	D3DRenderer::GetInstance()->GetDevice()->SetFVF(VertexFVF);
 	D3DRenderer::GetInstance()->GetDevice()->SetStreamSource(0, m_pVBw, 0, sizeof(VERTEX));

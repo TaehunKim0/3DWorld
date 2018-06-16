@@ -8,12 +8,13 @@ D3DRenderer::D3DRenderer()
 
 D3DRenderer::~D3DRenderer()
 {
+	Release();
 }
 
 void D3DRenderer::Release()
 {
+	DWORD dwRef = m_Device->Release();
 	SafeRelease(m_D3D);
-	SafeRelease(m_Device);
 }
 
 bool D3DRenderer::Initialize(int width, int height, HWND hWnd, bool windowed)
@@ -52,15 +53,13 @@ bool D3DRenderer::Initialize(int width, int height, HWND hWnd, bool windowed)
 
 	//m_Device->SetRenderState(D3DRS_SPECULARENABLE, true);
 
-	
-
 	//
-	D3DLIGHT9 Light;
+
 	ZeroMemory(&Light, sizeof(D3DLIGHT9));
 
 	Light.Type = D3DLIGHT_DIRECTIONAL;
 
-	Light.Direction = D3DXVECTOR3(1.f,-1.f,1.f);
+	Light.Direction = D3DXVECTOR3(0.f,-1.f,1.f);
 
 	Light.Diffuse = D3DXCOLOR(1.f, 1.f, 1.f, 1.f); //난반사광 (다수의 방향으로 반사됨)
 	Light.Ambient = D3DXCOLOR(0.2f, 0.2f, 0.2f, 1.f); //주변광 (특별한 방향없이 주변을 덮고 있는 빛)
@@ -69,11 +68,24 @@ bool D3DRenderer::Initialize(int width, int height, HWND hWnd, bool windowed)
 	m_Device->SetLight(0, &Light);
 	m_Device->LightEnable(0, true);
 
+	m_fX = 0.01f;
+
 	return true;
 }
 
 void D3DRenderer::RenderBegin()
 {
+	if (3.f < Light.Direction.x || 0.f > Light.Direction.x) //3을 넣어서 노멀라이즈 했을 때 X가 Y, Z보다 더 큰 값
+		m_fX *= -1.f;
+
+	D3DXVECTOR3 vNormal = *D3DXVec3Normalize(&D3DXVECTOR3() ,&D3DXVECTOR3(1, -1, 1)); //노멀라이즈는 각 성분을 길이로 나누기 때문에 여기선 각각 비중이 비슷하다.
+	D3DXVECTOR3 vNormal2 = *D3DXVec3Normalize(&D3DXVECTOR3(), &D3DXVECTOR3(5, -1, 1)); //하지만 길이에 비해 x인 5가 제일 비중이 크기 때문에 y ,z는 비중이 적다, x가 가장 비중이 크다.
+
+	Light.Direction.x += m_fX; //빛의 방향벡터와 정점의 노말벡터가 내적 했을 때  90 이상 270 도 이하이면 빛이 반사되지 않는다.
+
+	m_Device->SetLight(0, &Light);
+	
+
 	if (m_bWireFrame)
 	{
 		m_Device->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);

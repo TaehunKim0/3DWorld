@@ -49,8 +49,8 @@ void SampleScene::Update()
 
 	printf("Scene 의 RotY : %f\n", m_RotY);
 
-	D3DXVECTOR3 dt = player->m_Position - Mesh2->m_Position;
-	D3DXVec3Normalize(&dt, &dt);
+	D3DXVECTOR3 dt = player->m_Position - Mesh2->m_Position; //두 벡터사이 방향을 구한다(근데 길이를 갖고있음)
+	D3DXVec3Normalize(&dt, &dt);//여기서 정규화해서 방향만  가진 벡터로 바꿈
 
 	
 	//Mesh2->m_Position += dt * 0.05;
