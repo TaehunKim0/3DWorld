@@ -106,8 +106,6 @@ void Camera::Update()
 	D3DXMatrixIdentity(&matWorld);
 	device->SetTransform(D3DTS_WORLD, &matWorld);
 
-
-
 	D3DXMatrixLookAtLH(&matView, &EyePt, &LookAtPt, &UpVec);
 	device->SetTransform(D3DTS_VIEW, &matView);
 }

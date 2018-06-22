@@ -2,12 +2,15 @@
 #include "Mesh.h"
 
 
-Mesh::Mesh(LPDIRECT3DDEVICE9 pDevice)
-{
-	m_Device = pDevice;
-	m_Device->AddRef();
-}
+//Mesh::Mesh(LPDIRECT3DDEVICE9 pDevice)
+//{
+//	m_Device = pDevice;
+//	m_Device->AddRef();
+//}
 
+Mesh::Mesh() {
+
+}
 
 Mesh::~Mesh()
 {

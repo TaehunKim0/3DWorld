@@ -13,14 +13,13 @@ private:
 
 	DWORD dwTerrainX;
 	DWORD dwTerrainZ;
+
 public:
 	Terrain();
 	~Terrain();
 
-
 	void TextureInit(std::string fileName);
 	void Init();
-
 
 	void Update();
 	void Render();
